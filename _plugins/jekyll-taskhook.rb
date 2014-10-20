@@ -3,7 +3,7 @@
 # Currently supports grunt, gulp, npm, and rake.
 #
 # List your task runner and tasks to run in _config.yml
-# Will run all tasks runners listed in order.
+# Will run all tasks runners listed in alphabetical order.
 #
 # Accepts any of the following attributes in _config.yml:
 #  grunt
@@ -59,7 +59,7 @@ module Jekyll
 
 		    			gulpfile = File.file?("gulpfile.js")
 		    			if !gulpfile then 
-		    				print "\tGulpfile not found\n"
+		    				print "\tCannot find gulpfile\n"
 		    			else
 		    				run_tasks("gulp", gulp)
 		    			end
@@ -84,8 +84,12 @@ module Jekyll
 		def run_tasks(taskRunner, taskArray)
 			print "\nRunning #{taskRunner}...\n"
 			taskArray.each do |task|
-				if taskRunner == "gulp"
-					system 'gulp #{task}'
+				case taskRunner
+				when "npm"
+					system(taskRunner, "run #{task}")
+					break;
+				else
+					system(taskRunner, task)
 				end
 			end
 		end
@@ -103,7 +107,7 @@ module Jekyll
 			return nil
 		end
 
-		#Utility method for checking if node_module/{excutable} exists
+		#Utility method for checking if node_modules/{excutable} exists
 		def node_cmd_exists(cmd)
 			node_modules = File.exists?("node_modules")
 			
