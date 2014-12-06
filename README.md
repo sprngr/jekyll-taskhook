@@ -21,14 +21,17 @@ gulp:
 ## Current Support
 
 * Gulp
+* Grunt
 
 ## Planned Support
 
-* Grunt
 * NPM
 * Rake
 
 ## Changelog
+
+_v0.2.0_
+* Got off my butt and added in grunt support
 
 _v0.1.0_
 * Initialized Project

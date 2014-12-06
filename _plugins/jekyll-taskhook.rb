@@ -49,7 +49,21 @@ module Jekyll
 
 	    	if grunt || gulp || npm || rake then
 	    		if grunt then
-	    			# TODO
+	    			exists = node_cmd_exists("grunt")
+
+	    			if exists then
+	    				print "\tFound Grunt tasks: #{grunt}\n"
+
+		    			gruntfile = File.file?("gruntfile.js")
+		    			if !gulpfile then 
+		    				print "\tCannot find gruntfile\n"
+		    			else
+		    				run_tasks("grunt", grunt)
+		    			end
+	    			else
+	    				print "\tCannot find grunt\n"
+	    				print "\tTry running: npm install grunt grunt-cli\n"
+					end 
 	    		end
 	    		if gulp then
 	    			exists = node_cmd_exists("gulp")
