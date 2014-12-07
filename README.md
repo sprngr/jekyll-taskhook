@@ -4,9 +4,9 @@ Jekyll plugin for hooking taks runners into the build process
 
 ## Installation
 
-Current method is to copy the contents of `_plugins` to your own `_plugins` dir in your project directory.
+Current method is to copy the contents of this repo to a `_plugins/jekyll-taskhook` dir in your Jekyll project directory.
 
-You can do this manually, or:
+You can do that manually, or the awesome way:
 
 ``` bash
 $ cd <jekyll-project-path>
