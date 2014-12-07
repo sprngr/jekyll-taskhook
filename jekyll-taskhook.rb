@@ -11,7 +11,6 @@
 #  npm
 #  rake
 #
-#
 # Example configuration entry:
 #
 # gulp: [clean, concat, build]
@@ -83,10 +82,45 @@ module Jekyll
 					end 
 	    		end
 	    		if npm then
-	    			# TODO
+	    			exists = which("npm")
+
+	    			if exists then
+		    			print "\tFound NPM scripts: #{npm}\n"
+
+		    			packagejson = File.file?("package.json")
+		    			if !packagejson then 
+		    				print "\tCannot find package.json\n"
+		    			else
+		    				run_tasks("npm", npm)
+		    			end
+	    			else
+	    				print "\tCannot find npm\n"
+	    				print "\tInstall npm, then try again.\n"
+					end 
 		    	end
 		    	if rake then
-		    		# TODO
+		    		exists = which("rake")
+
+	    			if exists then
+		    			print "\tFound Rake tasks: #{rake}\n"
+
+		    			rakefile = File.file?("rakefile")
+
+		    			# Apparently we didn't find it.
+		    			if !rakefile then
+		    				rakefile = File.file?("rakefile.rb")
+		    			end
+
+		    			if !rakefile then 
+		    				print "\tCannot find rakefile\n"
+		    			else
+		    				run_tasks("rake", rake)
+		    			end
+	    			else
+	    				print "\tCannot find rake\n"
+	    				print "\tTry running: gem install rake\n"
+	    				print "\tHow did you even run this...\n"
+					end 
 		    	end
 		    else
 		    	print "\tNo tasks found.\n"
