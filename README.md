@@ -1,6 +1,6 @@
 ## Jekyll-Taskhook
 
-Jekyll plugin for hooking taks runners into the build process
+Jekyll plugin for hooking taks runners into the build process. Kind of experimental.
 
 ## Installation
 
@@ -31,6 +31,10 @@ Just do the above with whatever task runner system you choose, assuming it's sup
 * grunt
 * npm
 * rake
+
+## Known Caveats
+
+If your tasks used create files, avoid having them written to the root Jekyll directory or else an infinite loop will be caused if you run `jekyll serve`. If you do need to generate files for the build, direct the output to the build destination and be sure to include it in the `keep_files` list in the `_config.yml`.
 
 ## Changelog
 
