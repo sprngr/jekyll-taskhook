@@ -1,4 +1,6 @@
-## Jekyll-Taskhook
+# Jekyll-Taskhook
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 Jekyll plugin for hooking taks runners into the build process. Kind of experimental.
 
